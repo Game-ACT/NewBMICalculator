@@ -111,19 +111,23 @@ struct MyCalcView: View {
                 
                 VStack {
                     Text(myBMIResult)
+                        .fontWeight(.bold)
                     Text(myBMIInterpert)
+                        .fontWeight(.light)
                 }
+                .padding(.top, 20)
                 
-                VStack {
+                /*VStack {
                     Text("DEBUG")
                     Text("myWeight = \(self.myWeight)")
                     Text("myHeight = \(self.myHeight)")
                     Text("myBMIResult = \(self.myBMIResult)")
                     Text("myBMIInterpert = \(self.myBMIInterpert)")
-                    
-                }
+                }*/
+                 
             }
         }
+        .navigationTitle("Calculate BMI")
     }
 }
 
