@@ -24,7 +24,13 @@ struct MyCalcView: View {
     // Results variables.
     @State private var myBMIResult : String = ""
     @State private var myBMIInterpert : String = ""
+    @State private var showmyBMIInterpert : Bool = false
     
+    init() {
+        // change stepper icons to stepper set accentcolor | Note : Soon to be deprecated
+        UIStepper.appearance().setDecrementImage(UIImage(systemName: "minus"), for: .normal)
+        UIStepper.appearance().setIncrementImage(UIImage(systemName: "plus"), for: .normal)
+    }
     
     func bmicalculate(bmiValue: Double) -> String {
         // Add "BMI Value = " and round the value
@@ -79,6 +85,7 @@ struct MyCalcView: View {
                     .background(.cyan)
                     .cornerRadius(10)
                     .padding(.horizontal, 10)
+                    .accentColor(.white)
                     
                     Stepper("Height \(self.myHeight) centimeters"){
                         if myHeight < 200 {
@@ -98,6 +105,7 @@ struct MyCalcView: View {
                     .background(.cyan)
                     .cornerRadius(10)
                     .padding(.horizontal, 10)
+                    .accentColor(.white)
                     
                 }
                 
@@ -118,22 +126,52 @@ struct MyCalcView: View {
                  */
                 
                 VStack {
+                    Button(action: {
+                        showmyBMIInterpert.toggle()
+                    }){
+                        if showmyBMIInterpert {
+                            Text("Hide BMI Summary")
+                                .fontWeight(.bold)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0 ,maxHeight: 45)
+                                .background(.teal)
+                                .cornerRadius(10)
+                                .padding(.horizontal, 10)
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Show BMI Summary")
+                                .fontWeight(.bold)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0 ,maxHeight: 45)
+                                .background(.teal)
+                                .cornerRadius(10)
+                                .padding(.horizontal, 10)
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                
+                Spacer()
+                
+                VStack {
                     Text(myBMIResult)
                         .fontWeight(.bold)
-                    Text(myBMIInterpert)
-                        .fontWeight(.light)
-                        .padding(.horizontal, 10)
+                    if showmyBMIInterpert {
+                        Text(myBMIInterpert)
+                            .fontWeight(.light)
+                            .padding(.horizontal, 10)
+                    }
                 }
                 .padding(.top, 20)
                 
+                Spacer()
+                
                 /*VStack {
-                    Text("DEBUG")
-                    Text("myWeight = \(self.myWeight)")
-                    Text("myHeight = \(self.myHeight)")
-                    Text("myBMIResult = \(self.myBMIResult)")
-                    Text("myBMIInterpert = \(self.myBMIInterpert)")
-                }*/
-                 
+                 Text("DEBUG")
+                 Text("myWeight = \(self.myWeight)")
+                 Text("myHeight = \(self.myHeight)")
+                 Text("myBMIResult = \(self.myBMIResult)")
+                 Text("myBMIInterpert = \(self.myBMIInterpert)")
+                 }*/
+                
             }
         }
         .navigationTitle("Calculate BMI")
