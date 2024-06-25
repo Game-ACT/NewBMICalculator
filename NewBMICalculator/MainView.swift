@@ -51,7 +51,7 @@ struct MainView: View {
                     .padding(.bottom, -75)
             }
             
-            .navigationTitle("BMICalculator")
+            .navigationTitle("NewBMICalculator")
             .navigationBarTitleDisplayMode(.large)
             
         }

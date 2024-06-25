@@ -62,11 +62,15 @@ struct MyCalcView: View {
             VStack {
                 VStack {
                     Stepper("Weight \(self.myWeight) kilograms") {
-                        self.myWeight += 1
-                        refetchvals()
+                        if myWeight < 200 {
+                            self.myWeight += 1
+                            refetchvals()
+                        }
                     } onDecrement: {
-                        self.myWeight -= 1
-                        refetchvals()
+                        if myWeight > 1 {
+                            self.myWeight -= 1
+                            refetchvals()
+                        }
                     }
                     .font(.system(size: 20, weight: .heavy))
                     .padding(.horizontal, 20)
@@ -77,11 +81,15 @@ struct MyCalcView: View {
                     .padding(.horizontal, 10)
                     
                     Stepper("Height \(self.myHeight) centimeters"){
-                        self.myHeight += 1
-                        refetchvals()
+                        if myHeight < 200 {
+                            self.myHeight += 1
+                            refetchvals()
+                        }
                     } onDecrement: {
-                        self.myHeight -= 1
-                        refetchvals()
+                        if myHeight > 1 {
+                            self.myHeight -= 1
+                            refetchvals()
+                        }
                     }
                     .font(.system(size: 20, weight: .heavy))
                     .padding(.horizontal, 20)
@@ -114,6 +122,7 @@ struct MyCalcView: View {
                         .fontWeight(.bold)
                     Text(myBMIInterpert)
                         .fontWeight(.light)
+                        .padding(.horizontal, 10)
                 }
                 .padding(.top, 20)
                 
