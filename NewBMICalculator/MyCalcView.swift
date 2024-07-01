@@ -19,10 +19,10 @@ struct MyCalcView: View {
     //  • = 55 initializes the variable with a value of 55.
     
     // Replace values here to change placeholder
-    @State private var myWeight : Int = 55
-    @State private var myHeight : Int = 165
+    @State private var myWeightALT : Int = 55
+    @State private var myHeightALT : Int = 165
     // Results variables.
-    @State private var myBMIResult : String = ""
+    @State private var myBMIResultALT : String = ""
     @State private var myBMIInterpert : String = ""
     @State private var showmyBMIInterpert : Bool = false
     
@@ -39,9 +39,10 @@ struct MyCalcView: View {
     }
     
     func refetchvals() {
-        myBMIResult = bmicalculate(bmiValue: Double(self.myWeight) / (pow(Double(self.myHeight) / 100, 2)))
-        myBMIInterpert = bmiresultinterpert(bmiValue: Double(self.myWeight) / (pow(Double(self.myHeight) / 100, 2)))
+        myBMIResultALT = bmicalculate(bmiValue: Double(self.myWeightALT) / (pow(Double(self.myHeightALT) / 100, 2)))
+        myBMIInterpert = bmiresultinterpert(bmiValue: Double(self.myWeightALT) / (pow(Double(self.myHeightALT) / 100, 2)))
     }
+    
     func bmiresultinterpert(bmiValue: Double) -> String {
         var result : String = ""
         
@@ -67,14 +68,14 @@ struct MyCalcView: View {
         ZStack {
             VStack {
                 VStack {
-                    Stepper("Weight \(self.myWeight) kilograms") {
-                        if myWeight < 200 {
-                            self.myWeight += 1
+                    Stepper("Weight \(self.myWeightALT) kilograms") {
+                        if myWeightALT < 200 {
+                            self.myWeightALT += 1
                             refetchvals()
                         }
                     } onDecrement: {
-                        if myWeight > 1 {
-                            self.myWeight -= 1
+                        if myWeightALT > 1 {
+                            self.myWeightALT -= 1
                             refetchvals()
                         }
                     }
@@ -87,14 +88,14 @@ struct MyCalcView: View {
                     .padding(.horizontal, 10)
                     .accentColor(.white)
                     
-                    Stepper("Height \(self.myHeight) centimeters"){
-                        if myHeight < 200 {
-                            self.myHeight += 1
+                    Stepper("Height \(self.myHeightALT) centimeters"){
+                        if myHeightALT < 200 {
+                            self.myHeightALT += 1
                             refetchvals()
                         }
                     } onDecrement: {
-                        if myHeight > 1 {
-                            self.myHeight -= 1
+                        if myHeightALT > 1 {
+                            self.myHeightALT -= 1
                             refetchvals()
                         }
                     }
@@ -152,7 +153,7 @@ struct MyCalcView: View {
                 Spacer()
                 
                 VStack {
-                    Text(myBMIResult)
+                    Text(myBMIResultALT)
                         .fontWeight(.bold)
                     if showmyBMIInterpert {
                         Text(myBMIInterpert)
